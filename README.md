@@ -25,19 +25,38 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+
+**The Game's Purpose**
+This is a number-guessing game where the computer picks a secret number and you try to guess it. To help you along the way, the game gives you hints after each turn by telling you whether you need to guess higher or lower.
+
+**Bugs Found**
+
+* **Backwards Hints:** The game gave opposite hints, telling me to go lower when my guess was already too low.
+* **Broken Turn Counter:** The counter went into negative numbers and still said I had attempts left even after the game was over.
+* **Broken Reset Button:** Clicking the "New Game" button did absolutely nothing and wouldn't start a fresh round.
+* **Inaccurate History Log:** The developer debug tool didn't accurately show the list of numbers and words I had previously typed in.
+
+**Fixes Applied**
+
+* **Fixed Hint Directions:** Swapped the logic inside the guess-checking function so that the high/low arrows point the right way.
+* **Clamped the Counter:** Added a rule to ensure that the attempts left counter clamps cleanly at zero instead of dropping below it.
+* **Fixed the New Game Button:** Programmed the button to reset the player's attempts back to zero, pick a brand new secret number, and force the app to reload fresh.
+* **Corrected the State History:** Updated the history tracker so it saves every valid guess and invalid input into the page state accurately.
+
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+## 📸 Demo Walkthrough
+
+Describe your fixed game in numbered steps so a reader can follow along without watching a video:
+
+1. **Launch the Game and Select Difficulty:** Start the game by launching the Streamlit app; by default, the game initializes to "Normal" difficulty with a range from 1 to 100, allowing up to 8 attempts.
+2. **Make an Initial Low Guess:** Expand the "Developer Debug Info" tab to observe the secret number (for example: 42), then enter a low guess like `20` into the text box and click "Submit Guess". The app registers the first attempt, leaving 7 attempts remaining, and correctly flashes an upward-trending warning hint stating "Go HIGHER!".
+3. **Make an Overcorrecting High Guess:** Enter a significantly higher number like `75` into the input field and hit the submit button again. The system logs the second attempt, leaving 6 attempts remaining, and now displays a downward-trending warning hint stating "Go LOWER!".
+4. **Submit the Correct Secret Number:** Refine your guess by entering the exact secret number `42` into the input field and clicking the submit button for a third time. The turn tracker processes the interaction, and because the guess matches the secret value, the app instantly bursts with a celebratory screen animation of falling balloons.
+5. **Review the Final Victory State:** The interface locks down further input and displays a final success message proclaiming: *"You won! The secret was 42. Final score: 60"*, confirming a completed, victorious game loop.
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
