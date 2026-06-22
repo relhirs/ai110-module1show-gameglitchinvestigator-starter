@@ -1,4 +1,12 @@
-from logic_utils import check_guess
+from logic_utils import check_guess, get_attempt_limit, get_attempts_left
+
+def test_attempts_left_shows_zero_when_exhausted():
+    # i reported the UI showed "-1 attempts left"; AI wrote this test to pin the clamped-to-zero behavior.
+    for difficulty in ["Easy", "Normal", "Hard"]:
+        limit = get_attempt_limit(difficulty)
+        assert get_attempts_left(limit, limit) == 0
+        assert get_attempts_left(limit, limit + 1) == 0
+
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
